@@ -1,0 +1,65 @@
+---
+import Icon from '../Icon.astro';
+
+const industries = [
+  {
+    name: 'Healthcare & Clinics',
+    href: '/frontdesk/industries/healthcare-clinics',
+    icon: 'heart',
+    accent: 'var(--accent-coral)',
+    description: 'Ralvie can manage general enquiries, collect patient information and assist with appointment requests while following the workflows defined by the organisation.',
+  },
+  {
+    name: 'Hotels & Hospitality',
+    href: '/frontdesk/industries/hotels-hospitality',
+    icon: 'building',
+    accent: 'var(--accent-cyan)',
+    description: 'Ralvie can answer reservation and amenity questions, assist guests, handle after-hours enquiries and route conversations to the appropriate hotel department.',
+  },
+  {
+    name: 'Real Estate Offices',
+    href: '/frontdesk/industries/real-estate',
+    icon: 'home',
+    accent: 'var(--accent-blue)',
+    description: 'Ralvie can qualify buyers, sellers and tenants, answer property questions and schedule conversations or viewings with the appropriate agent.',
+  },
+  {
+    name: 'Education Institutions',
+    href: '/frontdesk/industries/education-institutions',
+    icon: 'academic-cap',
+    accent: 'var(--accent-amber)',
+    description: 'Ralvie can answer questions about programmes, admissions, enrolment and campus services while connecting specialised enquiries with the correct department.',
+  },
+  {
+    name: 'Financial Services',
+    href: '/frontdesk/industries/financial-services',
+    icon: 'currency-coin',
+    accent: 'var(--accent-violet)',
+    description: 'Ralvie can answer common enquiries, capture client details and route conversations to the appropriate financial-services professional.',
+  },
+];
+---
+
+<section id="industries" class="section relative">
+  <div class="container-page">
+    <div class="section-head reveal">
+      <p class="chip text-label-sm">Built for customer-focused businesses</p>
+      <h2 class="text-headline-lg text-on-surface">Adapt Ralvie to Your Industry and Workflow</h2>
+    </div>
+
+    <div class="reveal grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      {industries.map((industry) => (
+        <a href={industry.href} class="glass-card flex h-full flex-col transition-transform duration-200 hover:-translate-y-1">
+          <span class="icon-tile" style={`--tint: ${industry.accent}`}>
+            <Icon name={industry.icon} class="h-5 w-5" />
+          </span>
+          <h3 class="text-body-lg mt-4 font-semibold text-on-surface">{industry.name}</h3>
+          <p class="text-body-md mt-3 text-on-surface-variant">{industry.description}</p>
+          <span class="mt-auto inline-flex items-center gap-2 pt-6 text-sm font-semibold" style={`color: ${industry.accent}`}>
+            Explore more <Icon name="arrow-right" class="h-4 w-4" />
+          </span>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,390 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Icon from '../components/Icon.astro';
+
+const title = 'Book a Demo | Ralvie AI';
+const description = 'Schedule a personalized demo of Ralvie AI Frontdesk and Productivity. Discover how AI can transform your business.';
+---
+
+<Layout title={title} description={description}>
+  <Header title="Ralvie AI" theme="light" />
+
+  <main class="book-demo-page pt-(--header-height)">
+    <section class="hero relative overflow-hidden">
+      <div class="mesh" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="hero-centered">
+        <div class="booking-intro reveal">
+          <span class="eyebrow">Book a demo</span>
+          <h1>See Ralvie AI <span>in action.</span></h1>
+          <p>Choose a time that works for you and explore the right Ralvie AI solution for your team.</p>
+        </div>
+        <div class="calendly-container reveal glass">
+          <div id="my-cal-inline-30min" class="cal-inline-embed"></div>
+          <script is:inline type="text/javascript">
+            (function (C, A, L) {
+              const push = function (api, args) { api.q.push(args); };
+              const documentRef = C.document;
+              C.Cal = C.Cal || function () {
+                const cal = C.Cal;
+                const args = arguments;
+                if (!cal.loaded) {
+                  cal.ns = {};
+                  cal.q = cal.q || [];
+                  documentRef.head.appendChild(documentRef.createElement('script')).src = A;
+                  cal.loaded = true;
+                }
+                if (args[0] === L) {
+                  const api = function () { push(api, arguments); };
+                  const namespace = args[1];
+                  api.q = api.q || [];
+                  if (typeof namespace === 'string') {
+                    cal.ns[namespace] = cal.ns[namespace] || api;
+                    push(cal.ns[namespace], args);
+                    push(cal, ['initNamespace', namespace]);
+                  } else {
+                    push(cal, args);
+                  }
+                  return;
+                }
+                push(cal, args);
+              };
+            })(window, 'https://app.cal.com/embed/embed.js', 'init');
+
+            Cal('init', '30min', { origin: 'https://app.cal.com' });
+            Cal.config = Cal.config || {};
+            Cal.config.forwardQueryParams = true;
+            Cal.ns['30min']('inline', {
+              elementOrSelector: '#my-cal-inline-30min',
+              config: { layout: 'month_view', useSlotsViewOnSmallScreen: 'true' },
+              calLink: 'ralvie-ai-fd/30min',
+            });
+            Cal.ns['30min']('ui', { hideEventTypeDetails: false, layout: 'month_view' });
+          </script>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="benefits-section section">
+      <div class="container-page">
+        <div class="section-title reveal">
+          <span class="eyebrow">What to Expect</span>
+          <h2>Your personalized demo experience</h2>
+        </div>
+        <div class="benefits-grid">
+          {[
+            ['calendar', 'Quick 30-Minute Chat', 'No lengthy presentations. We focus on your specific needs.'],
+            ['sparkles', 'Live Product Demo', 'See Ralvie AI Frontdesk and Productivity in action.'],
+            ['target', 'Custom Recommendations', 'Get tailored suggestions based on your business goals.'],
+            ['bolt', 'Next Steps Planning', 'Understand pricing, timelines, and implementation.'],
+          ].map(([icon, title, desc]) => (
+            <article class="benefit-card glass reveal">
+              <span class="icon"><Icon name={icon} /></span>
+              <h3>{title}</h3>
+              <p>{desc}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer theme="light" />
+</Layout>
+
+<style>
+  .book-demo-page {
+    --ink: #151c43;
+    --muted: #626984;
+    --line: rgba(38, 47, 93, 0.12);
+    --blue: #3d63f5;
+    --violet: #7669f8;
+    background: #fbfcff;
+    color: var(--ink);
+    overflow: hidden;
+  }
+
+  .book-demo-page :global(h1),
+  .book-demo-page :global(h2),
+  .book-demo-page :global(h3) {
+    letter-spacing: -0.035em;
+  }
+
+  .hero {
+    min-height: calc(100vh - var(--header-height));
+    display: flex;
+    align-items: center;
+    padding: 5.5rem 0 6.5rem;
+    background: #fbfcff;
+    position: relative;
+  }
+
+  .mesh {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1280px;
+    max-width: 100vw;
+  }
+
+  .mesh i {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(90px);
+    opacity: 0.3;
+  }
+
+  .mesh i:nth-child(1) {
+    width: 42rem;
+    height: 42rem;
+    background: #9bbcff;
+    top: -18rem;
+    right: -8rem;
+  }
+
+  .mesh i:nth-child(2) {
+    width: 34rem;
+    height: 34rem;
+    background: #d8b6ff;
+    bottom: -17rem;
+    left: -7rem;
+  }
+
+  .mesh i:nth-child(3) {
+    width: 26rem;
+    height: 26rem;
+    background: #8ff0ed;
+    top: 34%;
+    left: 39%;
+    opacity: 0.2;
+  }
+
+  .hero-centered {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    padding: 0 2rem;
+  }
+
+  .booking-intro {
+    position: relative;
+    z-index: 1;
+    max-width: 760px;
+    margin: 0 auto 2.25rem;
+    text-align: center;
+  }
+
+  .booking-intro h1 {
+    margin: 1rem 0 0.8rem;
+    color: var(--ink);
+    font-size: clamp(2.4rem, 4.6vw, 4.8rem);
+    font-weight: 400;
+    line-height: 1.04;
+  }
+
+  .booking-intro h1 span {
+    background: linear-gradient(105deg, #4569ef 0%, #8264ed 54%, #48a7e7 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .booking-intro p {
+    margin: 0;
+    color: var(--muted);
+    font-size: clamp(1rem, 1.35vw, 1.18rem);
+    line-height: 1.65;
+  }
+
+
+
+  .calendly-container {
+    background: rgba(255, 255, 255, 0.62);
+    border: 1px solid rgba(255, 255, 255, 0.85);
+    box-shadow: 0 30px 70px rgba(61, 77, 135, 0.14), inset 0 1px white;
+    backdrop-filter: blur(22px);
+    border-radius: 28px;
+    padding: 1.5rem;
+    width: 100%;
+    max-width: 95%;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .calendly-container::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(93, 122, 251, 0.08), rgba(174, 113, 243, 0.06));
+    pointer-events: none;
+  }
+
+  .calendly-container :global(> div) {
+    position: relative;
+    z-index: 1;
+  }
+
+  .cal-inline-embed {
+    width: 100%;
+    height: 700px;
+    overflow: auto;
+  }
+
+  .glass {
+    background: rgba(255, 255, 255, 0.62);
+    border: 1px solid rgba(255, 255, 255, 0.85);
+    box-shadow: 0 30px 70px rgba(61, 77, 135, 0.14), inset 0 1px white;
+    backdrop-filter: blur(22px);
+  }
+
+  .section {
+    padding: 7rem 0;
+  }
+
+  .soft {
+    background: linear-gradient(180deg, #f5f7ff, #fbfcff);
+  }
+
+  .benefits-section {
+    position: relative;
+    padding: 7rem 0;
+    background: linear-gradient(180deg, #f4f6ff 0%, #fbfcff 100%);
+  }
+
+  .section-title {
+    max-width: 720px;
+    margin: 0 auto 3.25rem;
+    text-align: center;
+  }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.42rem 0.9rem;
+    border: 1px solid rgba(77, 102, 212, 0.3);
+    border-radius: 999px;
+    background: linear-gradient(110deg, rgba(225, 232, 255, 0.9), rgba(239, 223, 255, 0.88));
+    color: #4b60bd;
+    font: 700 0.7rem var(--font-label);
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+  }
+
+  .section-title h2 {
+    margin: 1rem 0 0;
+    color: var(--ink);
+    font-size: clamp(2.2rem, 3.4vw, 3.7rem);
+    font-weight: 600;
+    line-height: 1.08;
+  }
+
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1.25rem;
+  }
+
+  .benefit-card {
+    min-height: 255px;
+    padding: 1.7rem;
+    border: 1px solid rgba(215, 222, 247, 0.9);
+    border-radius: 22px;
+    background: rgba(255, 255, 255, 0.72);
+    box-shadow: 0 20px 45px rgba(52, 65, 124, 0.1), inset 0 1px rgba(255, 255, 255, 0.95);
+  }
+
+  .benefit-card .icon {
+    display: grid;
+    width: 48px;
+    height: 48px;
+    margin-bottom: 1.45rem;
+    place-items: center;
+    border-radius: 14px;
+    background: linear-gradient(145deg, #e0e6ff, #f0e5ff);
+    color: #546cea;
+  }
+
+  .benefit-card .icon :global(svg) {
+    width: 22px;
+    height: 22px;
+  }
+
+  .benefit-card h3 {
+    margin: 0 0 0.6rem;
+    color: var(--ink);
+    font-size: 1.1rem;
+    line-height: 1.25;
+  }
+
+  .benefit-card p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.92rem;
+    line-height: 1.65;
+  }
+
+
+
+  .reveal {
+    animation: fade-up 0.7s ease both;
+    animation-timeline: view();
+    animation-range: entry 0% cover 25%;
+  }
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal {
+      animation: none;
+    }
+  }
+
+  @media (max-width: 900px) {
+    .benefits-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .cta-actions {
+      flex-direction: column;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .section {
+      padding: 5rem 0;
+    }
+
+    .benefits-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .calendly-container {
+      padding: 1rem;
+    }
+
+    .cta-actions {
+      gap: 0.6rem;
+    }
+
+    .primary,
+    .secondary {
+      padding: 0.75rem 1rem;
+      font-size: 0.85rem;
+    }
+  }
+</style>
